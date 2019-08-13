@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{ mailinglist.name }} Management
+{% endblock title %}
+
+{% block body %}
+	<h1>{{ mailinglist.name }} manageMent</h1>
+	<a href="{% url 'mailinglist:delete_mailinglist' pk=mailinglist.id %}" class="btn btn-danger">Delete</a>
+
+	<div>
+		<a href="{% url 'mailinglist:subscribe' mailinglist_pk=mailinglist.id %}">Subscription Link</a>
+	</div>
+
+	<h2>Messages</h2>
+	<div>
+		Send New
+		<a href="{% url 'mailinglist:create_message' mailinglist_pk=mailinglist.id %}" class="btn btn-primary">Send New Message</a>
+	</div>
+	<ul>
+		{% for message in mailinglist.message_set.all %}
+			<li>
+				<a href="{% url 'mailinglist:view_message' pk=message.id %}">{{ message.subject }}</a>
+			</li>
+		{% endfor %}
+	</ul>
+
+	<h2>Subscribers</h2>
+	<ul>
+		{% for subscriber in mailinglist.subscriber_set.all %}
+			<li>
+				{{ subscriber.email }}
+				{{ subscriber.confirmed|yesno:"confrimed,unconfirmed"}}
+				<a href="{% url 'mailinglist:unsubscribe' pk=subscriber.id %}">Unsubscribe</a>
+			</li>
+		{% endfor %}
+	</ul>
+{% endblock body %}

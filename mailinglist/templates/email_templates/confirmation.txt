@@ -1,0 +1,11 @@
+Hello {{ subscriber.email }}
+
+Someone (hopefully) just subscribed to {{mailinglist}} .
+
+To confirm your subscription go to {{ confirmation_link}}.
+
+If You Don't Confrim , You Won't Hear From {{ mailinglist }} Ever Again.
+
+Thanks,
+
+Your Friendly Internet Mail Ape !

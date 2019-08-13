@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+    {{message.subject}}
+{% endblock title %}
+
+
+{% block body %}
+    <h1>{{ message.subject }}</h1>
+    <div>
+    	{{ message.body }}
+    </div>
+{% endblock body %}
